@@ -1,0 +1,148 @@
+/* ======================================= */
+/* style9.css - Gaya Halaman Laporan Penyewaan */
+/* ======================================= */
+
+/* Container Utama Laporan */
+.laporan-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Utama (Panah dan Judul) */
+.laporan-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px; 
+    margin-top: 5px; 
+    height: 50px; 
+}
+
+/* Tombol Kembali (Arrow di Kiri Atas) */
+.laporan-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Judul Halaman "Laporan Penyewaan Mobil" */
+.laporan-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* SUMMARY BOXES (Total Penyewaan & Pendapatan) */
+/* ======================================= */
+
+.summary-cards-container {
+    display: flex;
+    justify-content: flex-start; /* Posisikan ke kiri */
+    gap: 30px; /* Jarak antar card */
+    margin-bottom: 30px;
+    padding-left: 20px; /* Jarak agar tidak terlalu mepet dengan samping */
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px 30px;
+    min-width: 300px;
+}
+
+.summary-icon {
+    font-size: 35px;
+    color: #ff9900; /* Warna oranye */
+    margin-right: 20px;
+}
+.dollar-icon {
+    color: #007bff; /* Warna biru untuk dolar */
+}
+
+.summary-details {
+    line-height: 1.2;
+}
+
+.summary-label {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+.summary-value {
+    margin: 5px 0 0 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* ======================================= */
+/* JUDUL & TABEL DATA PENYEWAAN */
+/* ======================================= */
+
+.data-penyewaan-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+/* Latar belakang tabel */
+.laporan-table-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 0; 
+}
+
+/* Tabel (Menggunakan style umum .data-table) */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead th {
+    background-color: #f0f0f0;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.data-table tbody tr {
+    /* Gaya untuk membuat baris ganjil/genap terlihat seperti di gambar */
+    background-color: #fff;
+}
+.data-table tbody tr:nth-child(even) {
+    background-color: #f7f7f7; 
+}
+
+
+.data-table tbody td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px; 
+    font-weight: 500;
+    color: #333;
+}

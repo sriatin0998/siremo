@@ -1,0 +1,186 @@
+/* ======================================= */
+/* style7.css - Gaya Halaman Transaksi */
+/* ======================================= */
+
+/* Container Utama Data */
+.transaksi-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Utama yang menampung Arrow dan Judul */
+.transaksi-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 5px; 
+    height: 50px; 
+}
+
+/* Tombol Kembali (Arrow di Kiri Atas) */
+.transaksi-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Judul Halaman "Transaksi" */
+.transaksi-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* STYLE TABEL (Mirip style6.css/data-table-card) */
+/* ======================================= */
+
+.data-table-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 50px; 
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead th {
+    background-color: #f0f0f0;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.data-table tbody td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px; 
+}
+
+/* Tombol Aksi Simpan */
+.action-cell {
+    white-space: nowrap;
+    text-align: center !important; 
+}
+
+.simpan-btn {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600; 
+    color: #007bff; /* Warna biru, persis seperti di gambar */
+}
+.simpan-btn:hover {
+    text-decoration: underline;
+}
+/* ======================================= */
+/* style7.css - Gaya Halaman Transaksi */
+/* ======================================= */
+
+/* Container Utama Data */
+.transaksi-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Utama yang menampung Arrow dan Judul */
+.transaksi-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 5px; 
+    height: 50px; 
+}
+
+/* Tombol Kembali (Arrow di Kiri Atas) */
+.transaksi-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Judul Halaman "Transaksi" */
+.transaksi-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* STYLE TABEL */
+/* ======================================= */
+
+.data-table-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 50px; 
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead th {
+    background-color: #f0f0f0;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.data-table tbody td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px; 
+}
+
+/* Tombol Aksi Simpan */
+.action-cell {
+    white-space: nowrap;
+    text-align: center !important; 
+}
+
+.simpan-btn {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600; 
+    color: #007bff; 
+}
+.simpan-btn:hover {
+    text-decoration: underline;
+}

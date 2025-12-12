@@ -1,0 +1,195 @@
+/* --- General Reset & Setup --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* --- 1. Navigation Bar --- */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    box-sizing: border-box;
+    z-index: 20; /* Ditingkatkan agar selalu di atas segalanya */
+}
+
+/* KOREKSI: Logo digabung dan diatur agar tidak terpisah */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    /* Ini penting jika Anda melihat Lo SIREMO Mc di gambar */
+    white-space: nowrap; 
+}
+
+.navbar .car-icon {
+    width: 30px;
+    height: auto;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar .nav-links .active {
+    background-color: #ff9800;
+    color: white;
+}
+
+.navbar .nav-links .btn-auth {
+    background-color: #ff9800; 
+    color: white;
+    padding: 10px 20px;
+}
+
+.navbar .nav-links .btn-auth:hover {
+    background-color: #e68900;
+    color: white;
+}
+
+.navbar .nav-links .nav-greeting {
+    color: #333;
+    padding: 10px 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* --- 2. Header / Hero Section --- */
+.hero-section {
+    background: url('road.jpg') no-repeat center center; 
+    background-size: cover;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 180px; 
+    position: relative;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    text-align: center;
+    /* KOREKSI: Warna teks diubah menjadi putih agar lebih kontras */
+    color: white; 
+    max-width: 800px;
+    padding: 0 20px;
+    /* Jarak vertikal disesuaikan agar tombol 'Cari Mobil' tidak tertutup */
+    margin-bottom: 300px; 
+    z-index: 15; /* Ditingkatkan agar di atas elemen lain */
+}
+
+.hero-content h1, .hero-content h2, .hero-content p {
+    /* KOREKSI: Shadow ditingkatkan untuk keterbacaan yang maksimal */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); 
+}
+
+.hero-content h1 {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-content h2 {
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* Tombol Cari Mobil */
+.btn-search {
+    display: inline-block;
+    background-color: #ff9800;
+    color: white;
+    padding: 18px 60px;
+    margin-top: 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.6);
+    transition: background-color 0.3s;
+    z-index: 18; /* SANGAT PENTING: Harus lebih tinggi dari kartu mobil */
+    position: relative; /* Wajib ada untuk z-index bekerja */
+}
+
+/* --- 3. Popular Cars Section --- */
+.popular-cars {
+    position: absolute;
+    width: 100%;
+    /* KOREKSI: Dipindahkan sedikit ke bawah agar tidak menabrak tombol Cari Mobil */
+    top: 75vh; 
+    padding: 0 60px;
+    box-sizing: border-box;
+    z-index: 10; /* Kartu mobil harus di bawah tombol Cari Mobil */
+}
+
+.popular-cars h3 {
+    font-size: 28px;
+    font-weight: bold;
+    /* KOREKSI: Diubah menjadi putih agar terlihat jelas */
+    color: white; 
+    margin-left: 20px;
+    margin-bottom: 30px;
+    /* Shadow untuk keterangan Mobil Populer */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.car-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.car-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 15px;
+    width: 25%; 
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.car-card h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; 
+    object-fit: contain; 
+    margin-bottom: 10px;
+}

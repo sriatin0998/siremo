@@ -1,0 +1,99 @@
+/* ======================================= */
+/* style8.css - Gaya Halaman Tarif Sewa */
+/* ======================================= */
+
+/* Container Utama Data */
+.tarif-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Utama yang menampung Arrow dan Judul */
+.tarif-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px; /* Jarak antara header dan form */
+    margin-top: 5px; 
+    height: 50px; 
+}
+
+/* Tombol Kembali (Arrow di Kiri Atas) */
+.tarif-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Judul Halaman "Tarif Sewa" */
+.tarif-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* STYLE FORM KHUSUS TARIF SEWA */
+/* ======================================= */
+
+.form-card-tarif {
+    background: rgba(255, 255, 255, 0.9); /* Latar belakang semi-transparan putih */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 40px; 
+    margin: 0 auto; 
+    max-width: 500px; /* Ukuran form agar proporsional */
+}
+
+.form-group-tarif {
+    margin-bottom: 25px; 
+}
+
+.form-group-tarif label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 18px; /* Ukuran font label seperti di gambar */
+}
+
+.form-card-tarif input[type="number"], 
+.form-card-tarif select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 50px; /* Tinggi input agar tebal seperti di gambar */
+}
+
+/* Tombol Submit Oranye */
+.submit-tarif-btn {
+    width: 100%;
+    background-color: #ff9900; /* Warna oranye */
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.submit-tarif-btn:hover {
+    background-color: #e68a00;
+}

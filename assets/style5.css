@@ -1,0 +1,179 @@
+/* ======================================= */
+/* STYLE KHUSUS HALAMAN ULASAN */
+/* ======================================= */
+
+.ulasan-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ulasan-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.ulasan-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.ulasan-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Tombol Tambah Komentar */
+.tambah-komentar-btn {
+    background: #ff9900;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    transition: background 0.2s;
+}
+.tambah-komentar-btn:hover {
+    background: #e68a00;
+}
+.tambah-komentar-btn i {
+    margin-right: 5px;
+}
+
+/* Kotak dan Tabel Ulasan */
+.ulasan-box {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ulasan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ulasan-table th {
+    background-color: #f0f0f0;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.ulasan-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* Bintang Rating */
+.review-star {
+    color: gold; 
+    margin-right: 2px;
+    font-size: 18px;
+}
+
+/* Tautan Aksi Hapus */
+.action-link {
+    color: #d9534f;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+/* ---- CSS untuk Halaman Ulasan ---- */
+
+/* Kotak Konten Ulasan */
+.ulasan-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+/* Tombol Tambah Komentar */
+.tambah-komentar-btn {
+    background: #ff9900; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: absolute; 
+    right: 30px; 
+    top: 100px; /* Sesuaikan posisi agar sejajar dengan header */
+}
+
+/* Tabel Ulasan */
+.ulasan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ulasan-table th {
+    background-color: #f0f0f0;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.ulasan-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+/* Rating Bintang */
+.review-star {
+    /* Membuat bintang terlihat penuh/aktif */
+    color: gold; 
+    margin-right: 2px;
+    font-size: 1.1em;
+}
+
+.rating-cell {
+    /* Posisikan bintang di tengah sel */
+    text-align: center !important; 
+}
+
+/* Tautan Aksi Hapus */
+.action-link {
+    color: #d9534f; /* Warna merah */
+    text-decoration: none;
+    font-weight: bold;
+}
+.action-link:hover {
+    text-decoration: underline;
+}

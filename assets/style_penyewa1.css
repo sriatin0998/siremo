@@ -1,0 +1,153 @@
+/* --- Bagian Umum --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Ganti font jika Anda menggunakan font khusus */
+}
+
+/* Container utama yang menampung latar belakang */
+.background-image {
+    /* Gunakan gambar latar belakang Anda di sini */
+    background: url('road.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Logo SIREMO di Pojok Kiri Atas --- */
+.logo {
+    position: absolute;
+    top: 30px; /* Jarak dari atas */
+    left: 40px; /* Jarak dari kiri */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white; /* Warna teks putih agar terlihat di background */
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Shadow agar teks lebih jelas */
+    z-index: 10;
+}
+
+/* Icon mobil (jika ada) */
+.car-icon {
+    width: 25px; 
+    height: auto;
+    filter: invert(1); /* Jika icon Anda hitam, ubah ke putih */
+}
+
+/* --- Kartu Form (Kotak Putih Transparan) --- */
+.form-card {
+    /* Warna putih dengan transparansi 85% */
+    background-color: rgba(255, 255, 255, 0.85); 
+    padding: 40px 50px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+    width: 380px; /* Lebar kartu */
+    text-align: center;
+    /* Efek blur (penting untuk tampilan yang diinginkan) */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); /* Untuk kompatibilitas Safari */
+    position: relative; /* Agar z-index bekerja jika dibutuhkan */
+    z-index: 5;
+}
+
+/* Judul H2 (MASUK / DAFTAR) */
+.form-card h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Input Form */
+.form-card input[type="text"],
+.form-card input[type="email"],
+.form-card input[type="password"] {
+    width: 100%;
+    /* Gunakan padding vertikal lebih besar untuk kesan tebal */
+    padding: 15px 15px; 
+    margin-bottom: 20px;
+    border: none; /* Hilangkan border */
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9); /* Sedikit transparan pada input */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Shadow kecil di dalam */
+}
+
+/* Lupa Kata Sandi (Untuk Login) */
+.lupa-sandi {
+    display: block;
+    text-align: left; /* Pindahkan ke kiri agar rapi */
+    font-size: 14px;
+    color: #007bff; /* Warna biru lebih terang */
+    text-decoration: none;
+    margin-top: -10px; /* Posisikan lebih dekat ke input */
+    margin-bottom: 25px;
+}
+
+.lupa-sandi:hover {
+    text-decoration: underline;
+}
+
+/* Tombol Submit (MASUK / DAFTAR) */
+.btn-submit {
+    width: 100%;
+    background-color: #ff9800; /* Warna oranye terang */
+    color: white;
+    padding: 15px 0;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4); /* Shadow pada tombol */
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #e68900; /* Oranye sedikit lebih gelap saat hover */
+}
+
+/* Link Daftar/Masuk di bagian bawah */
+.daftar-link, .login-link {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+.daftar-link a, .login-link a {
+    color: #007bff; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.daftar-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Pesan Error/Sukses */
+.error-message {
+    color: #d9534f; /* Merah yang lebih lembut */
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: normal;
+}
+.success-message {
+    color: #5cb85c;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: normal;
+}

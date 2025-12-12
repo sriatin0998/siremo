@@ -1,0 +1,231 @@
+/* ======================================= */
+/* style_form.css - Gaya Formulir Umum */
+/* ======================================= */
+
+/* Mengatur Latar Belakang & Overlay */
+.main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.background-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ganti '../assets/road.jpg' dengan path gambar latar belakang Anda */
+    background-image: url('road.jpg'); 
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+}
+
+/* Container Formulir */
+.form-page-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center; 
+}
+
+/* Header */
+.form-header {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    max-width: 500px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 40px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.form-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* STYLE CARD FORMULIR */
+/* ======================================= */
+
+.form-card {
+    background: rgba(255, 255, 255, 0.85); /* Card putih transparan */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    padding: 50px 40px; 
+    width: 100%;
+    max-width: 500px; 
+    margin-top: 50px; 
+}
+
+.form-group {
+    margin-bottom: 25px; 
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px; 
+}
+
+.form-card input[type="text"], 
+.form-card input[type="number"], 
+.form-card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 50px; 
+}
+
+/* Tombol Submit Denda (Sendiri) */
+.submit-denda-btn {
+    width: 100%;
+    background-color: #ff9900; /* Warna oranye */
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.submit-denda-btn:hover {
+    background-color: #e68a00;
+}
+
+/* Tambahan untuk Pengembalian (jika Anda menggunakan file CSS yang sama) */
+.button-group-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+.submit-btn,
+.denda-btn {
+    width: 50%;
+    background-color: #ff9900; 
+    color: white;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.main-content .background-image, 
+.main-content .overlay {
+    position: absolute; /* Ganti fixed menjadi absolute */
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Form Page Container diubah agar formulir terpusat di area konten utama */
+.form-page-container {
+    /* Hapus min-height: 100vh; dari form-page-container karena sudah ada di dashboard-container */
+    min-height: calc(100vh - 60px); /* Kurangi tinggi header jika ada */
+    justify-content: center; 
+    align-items: center; 
+    padding-top: 50px; /* Jarak atas */
+    padding-bottom: 50px;
+    width: 100%;
+}
+
+/* Header harus diposisikan relatif terhadap container, tidak absolut di window */
+.form-header.header-with-sidebar {
+    position: static; /* Ganti absolute menjadi static */
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 50px;
+    /* Posisikan di tengah form-page-container */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Pastikan panah kembali diposisikan dengan benar di header baru */
+.form-header.header-with-sidebar .back-arrow {
+    position: absolute; /* Tetap absolute relatif terhadap .form-header */
+    left: 0;
+}
+
+/* Formulir harus di tengah */
+.form-card.form-centered {
+    margin: 0 auto;
+}
+/* Pastikan ini ada di file CSS yang Anda gunakan untuk form, misalnya style_form.css */
+
+/* GAYA PESAN SUKSES/ERROR YANG LEBIH MENCERAH */
+
+.success-msg {
+    /* MENGUBAH WARNA MENJADI HIJAU KUAT & TEKS PUTIH */
+    background-color: #008000; 
+    color: #ffffff; 
+    border: 1px solid #005f00;
+    
+    padding: 15px 25px; 
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    
+    margin: 20px auto 30px auto; 
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    z-index: 10; 
+    position: relative; 
+}
+
+.error-msg {
+    /* GAYA UNTUK ERROR (MISALNYA MERAH KUAT) */
+    background-color: #dc3545; 
+    color: #ffffff;
+    border: 1px solid #b02a37;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px auto 30px auto;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    position: relative;
+}

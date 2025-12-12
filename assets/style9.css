@@ -1,0 +1,107 @@
+/* ======================================= */
+/* style10.css - Gaya Halaman Pengembalian */
+/* ======================================= */
+
+/* Container Utama Data */
+.pengembalian-container {
+    position: relative;
+    padding: 30px;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Utama (Panah dan Judul) */
+.pengembalian-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px; 
+    margin-top: 5px; 
+    height: 50px; 
+}
+
+.pengembalian-header .back-arrow {
+    position: absolute;
+    left: 0;
+    font-size: 35px;
+    color: #333; 
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.pengembalian-title {
+    font-size: 32px;
+    font-weight: 800; 
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+/* ======================================= */
+/* STYLE FORM KHUSUS PENGEMBALIAN */
+/* ======================================= */
+
+.form-card-pengembalian {
+    background: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 40px; 
+    margin: 0 auto; 
+    max-width: 500px; 
+}
+
+.form-group-pengembalian {
+    margin-bottom: 25px; 
+}
+
+.form-group-pengembalian label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 18px; 
+}
+
+.form-card-pengembalian input[type="text"], 
+.form-card-pengembalian input[type="date"],
+.form-card-pengembalian select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 50px; 
+}
+
+.button-group-pengembalian {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Tombol Submit dan Input Denda (Sama-sama Oranye) */
+.submit-btn-pengembalian,
+.denda-btn-pengembalian {
+    width: 50%;
+    background-color: #ff9900; 
+    color: white;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.submit-btn-pengembalian:hover,
+.denda-btn-pengembalian:hover {
+    background-color: #e68a00;
+}
