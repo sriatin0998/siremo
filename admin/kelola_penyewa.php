@@ -105,7 +105,7 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'edit' && isset($_GET['id'])) {
         
         <div class="sidebar">
             <div class="logo-siermo">
-                <span class="car-icon">🚗</span> 
+                <i class="fa-solid fa-car-side"></i>
                 <h2 class="logo-text">SIREMO</h2> 
             </div>
             

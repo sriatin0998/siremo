@@ -35,7 +35,6 @@ if (isset($_POST['submit_denda'])) {
         <div class="sidebar">
             <div class="logo-siermo">
                 <i class="fa-solid fa-car-side"></i>
-                <span class="car-icon">🚗</span> 
                 <h2 class="logo-text">SIREMO</h2> 
             </div>
             
