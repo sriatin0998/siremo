@@ -10,7 +10,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login_admin' || $_SES
 $username = $_SESSION['username'];
 $nama_lengkap = isset($_SESSION['nama_lengkap']) ? $_SESSION['nama_lengkap'] : 'Admin'; 
 
-$total_mobil = 9;
+$total_mobil = 999;
 $total_penyewa = 4;
 $pendapatan = "Rp. 6.325.000";
 $transaksi = 4;
@@ -32,7 +32,7 @@ $tarif_sewa = "Rp.275.000 - 1.300.000";
         
         <div class="sidebar">
             <div class="logo-siermo">
-                <span class="car-icon">🚗</span> 
+                <i class="fa-solid fa-car-side"></i>
                 <h2 class="logo-text">SIREMO</h2> 
             </div>
             
