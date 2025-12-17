@@ -1,198 +1,89 @@
-/* --- General Reset & Setup --- */
+/* General Setup */
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f4f4;
-}
-
-/* --- 1. Navigation Bar (Transparan & Menyatu) --- */
-.navbar {
-    position: absolute; 
-    top: 0;
-    width: 100%;
+    font-family: 'Arial Black', sans-serif; /* Font tebal sesuai gambar */
+    background-color: #F8E7D8; /* Warna latar beige khas SIREMO */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
-    box-sizing: border-box;
-    z-index: 20;
-    background-color: transparent; 
-    box-shadow: none; 
+    justify-content: center;
 }
 
-/* KOREKSI LOGO: Pastikan Logo tidak terpisah */
-.navbar .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-.navbar .car-icon {
-    width: 35px; /* Sedikit lebih besar */
-    height: auto;
+.mobil-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 50px 0;
 }
 
-/* Teks Navigasi (Warna Gelap/Orange) */
-.navbar .nav-links {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+/* Grid Tata Letak 3 Kolom */
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom sejajar */
+    gap: 40px; /* Jarak antar kartu */
+    justify-items: center;
 }
 
-.navbar .nav-links a {
-    text-decoration: none;
-    color: #333; /* Default text color (Dark) */
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar .nav-links a.active {
-    background-color: #ff9800; /* Warna Orange */
-    color: white;
-}
-
-.navbar .nav-links .btn-auth {
-    background-color: #ff9800; 
-    color: white;
-    padding: 10px 20px;
-}
-
-.navbar .nav-links .nav-greeting {
-    color: #333;
-    padding: 10px 10px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-
-/* --- 2. HEADER SECTION (Umum) --- */
-.hero-section {
-    background: url('road.jpg') no-repeat center center; 
-    background-size: cover;
-    position: relative;
-    box-sizing: border-box;
+/* Kartu Mobil */
+.car-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan tebal sesuai gambar */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Judul Mobil */
+.car-title h4 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    color: #000;
+    line-height: 1.2;
+    height: 45px; /* Menjaga tinggi tetap sama */
+    display: flex;
     align-items: center;
-    padding-top: 80px; 
-}
-
-/* Overlay di hero */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* WARNA OVERLAY JINGGA TRANSPARAN Sesuai Gambar */
-    background: rgba(255, 165, 0, 0.2); 
-    z-index: 5;
-}
-
-/* KHUSUS Halaman HOME */
-.hero-section.hero-home {
-    min-height: 100vh;
     justify-content: center;
-    padding-top: 150px; 
+    text-transform: uppercase;
 }
 
-/* KHUSUS Halaman MOBIL */
-.hero-section.hero-mobil {
-    min-height: 50vh; /* Background Pendek Cukup Tinggi */
-    justify-content: flex-start;
-    padding-top: 100px; /* Padding atas disesuaikan */
-}
-
-/* Keterbacaan Teks Hero (Home) */
-.hero-content {
-    text-align: center;
-    color: #333; 
-    max-width: 800px;
-    padding: 0 20px;
-    z-index: 15;
-    margin-top: 0; 
-}
-/* ... (Gaya H1, H2, P, btn-search di hero-content sama) ... */
-
-/* --- 3. MOBIL POPULER (Hanya di Home) --- */
-.popular-cars {
-    position: absolute; 
+/* Gambar Mobil */
+.car-image img {
     width: 100%;
-    bottom: -120px; 
-    padding: 0 60px;
-    box-sizing: border-box;
-    z-index: 10;
-}
-/* ... (Gaya popular-cars h3 dan car-list sama) ... */
-
-/* --- 4. DAFTAR MOBIL LENGKAP (Extended Section - Untuk Halaman Mobil) --- */
-.extended-cars-section {
-    background-color: transparent; /* PENTING: Latar belakang section ini transparan */
-    box-sizing: border-box;
-    position: relative;
-    text-align: center;
-    padding: 50px 60px 50px 60px; 
-    /* KOREKSI KRUSIAL: Tarik ke atas agar kartu melayang di atas background Hero */
-    margin-top: -300px; 
-    z-index: 10;
-}
-
-.extended-car-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Gaya Kartu Mobil (Umum) */
-.car-card {
-    /* Latar Belakang Putih Semi Transparan Sesuai Gambar */
-    background-color: rgba(255, 255, 255, 0.9); 
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    z-index: 10; 
-}
-
-.car-card h4 {
-    font-weight: 900; 
-    margin-bottom: 15px;
-    font-size: 20px;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 20px;
 }
 
 /* Tombol Detail */
 .btn-detail {
     display: inline-block;
-    background-color: #ff9800; /* Orange */
-    color: white;
-    padding: 8px 30px; 
-    margin-top: 10px;
-    border-radius: 10px;
+    background-color: #f7a972; /* Warna oranye muda tombol */
+    color: #000;
     text-decoration: none;
-    font-size: 16px;
+    padding: 8px 35px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: bold;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
 }
 
-/* --- Scroll Up Arrow --- */
-.scroll-up-arrow {
-    display: block;
-    width: 50px;
-    height: 50px;
-    margin: 30px auto 20px auto; 
-    cursor: pointer;
+.btn-detail:hover {
+    background-color: #e69861;
 }
 
-.scroll-up-arrow svg {
-    fill: #333;
+/* Responsif untuk layar kecil (Tablet/HP) */
+@media (max-width: 900px) {
+    .car-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .car-grid {
+        grid-template-columns: 1fr;
+    }
 }

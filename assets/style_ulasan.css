@@ -1,0 +1,130 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #F8E7D8; /* Warna beige khas SIREMO */
+    color: #000;
+}
+
+.page-wrapper {
+    padding: 30px 50px;
+}
+
+/* Header Brand */
+.header-brand {
+    margin-bottom: 40px;
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.car-icon-orange {
+    color: #f7a972; /* Warna oranye icon */
+    font-size: 30px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Content Container */
+.content-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Review Header Styling */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.rating-summary h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.score {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stars {
+    color: #000;
+    font-size: 24px;
+}
+
+/* Button Tambah Ulasan */
+.btn-tambah {
+    background-color: #f7a972; /* Oranye tombol */
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-tambah:hover {
+    background-color: #e69861;
+}
+
+/* Reviews Grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dua kolom ulasan */
+    gap: 30px;
+}
+
+/* Card Styling */
+.review-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Shadow melengkung sesuai gambar */
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ddd;
+}
+
+.text-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.comment {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}

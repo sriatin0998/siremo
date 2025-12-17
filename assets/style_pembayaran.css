@@ -1,0 +1,134 @@
+/* General Setup */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #F8E7D8; /* Warna latar belakang beige */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.payment-wrapper {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px 0; /* Padding vertikal diatur agar garis pemisah rapat ke samping */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Payment Method Options */
+.method-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px solid #eeeeee; /* Garis pemisah antar metode */
+}
+
+.method-option:last-child {
+    border-bottom: none;
+}
+
+.method-info {
+    display: flex;
+    align-items: center;
+}
+
+.icon-orange {
+    color: #ff9900; /* Warna ikon oranye */
+    font-size: 22px;
+    width: 35px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.method-info span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Custom Radio Button Styling */
+.method-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+}
+
+.method-option:hover .checkmark {
+    border-color: #ff9900;
+}
+
+.method-option input:checked ~ .checkmark {
+    background-color: #fff;
+    border-color: #624ab3; /* Warna ungu untuk border saat dipilih */
+    border-width: 6px; /* Memberikan efek titik di tengah */
+}
+
+/* Transaction Detail Section */
+.transaction-detail {
+    padding: 25px;
+}
+
+.transaction-detail p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.price-section {
+    margin-top: 15px;
+}
+
+.amount {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Button Styling */
+.button-center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-cek-status {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 45px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+.btn-cek-status:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+}

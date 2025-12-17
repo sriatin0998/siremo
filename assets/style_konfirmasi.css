@@ -1,0 +1,122 @@
+/* General Setup */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #F8E7D8; /* Warna beige SIREMO */
+    color: #000;
+}
+
+.page-wrapper {
+    padding: 40px 60px;
+}
+
+/* Header & Logo */
+.header-brand {
+    margin-bottom: 50px;
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.car-icon-orange {
+    color: #f7a972; /* Warna oranye muda */
+    font-size: 32px;
+}
+
+.logo-text {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Card Container */
+.confirmation-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px 60px;
+    max-width: 800px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Shadow tebal sesuai gambar */
+}
+
+.confirmation-card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+/* List Detail */
+.detail-list {
+    margin-left: 40px; /* Indentasi konten detail sesuai gambar */
+    margin-bottom: 30px;
+}
+
+.detail-item {
+    display: flex;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.label {
+    font-weight: bold;
+    min-width: 200px;
+}
+
+.value {
+    font-weight: bold;
+}
+
+/* Denda Section */
+.denda-section {
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+.denda-section label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.input-wrapper input {
+    width: 350px;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #777;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* Tombol Konfirmasi */
+.button-group {
+    display: flex;
+    justify-content: center; /* Tombol di tengah kartu */
+}
+
+.btn-konfirmasi {
+    background-color: #f7a972; /* Warna oranye khas tombol */
+    border: none;
+    padding: 12px 100px; /* Panjang tombol sesuai gambar */
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+}
+
+.btn-konfirmasi:hover {
+    background-color: #e69861;
+}
