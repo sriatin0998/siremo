@@ -1,0 +1,116 @@
+.history-container {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    min-height: 80vh;
+}
+
+.history-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.history-header h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+}
+
+.history-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.history-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-left {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.img-wrapper img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.car-details h3 {
+    margin: 5px 0;
+    color: #333;
+}
+
+.booking-code {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #e67e22;
+    background: #fdf0e6;
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+.info-row {
+    display: flex;
+    gap: 15px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.card-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.price-info strong {
+    display: block;
+    font-size: 1.3rem;
+    color: #27ae60;
+}
+
+.status-badge {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+/* Warna Status */
+.status-process { background: #fff3cd; color: #856404; }
+.status-success { background: #d4edda; color: #155724; }
+.status-done { background: #d1ecf1; color: #0c5460; }
+.status-cancel { background: #f8d7da; color: #721c24; }
+
+.pay-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.pay-lunas { background: #27ae60; color: white; }
+.pay-pending { background: #f1c40f; color: #fff; }
+
+.btn-detail {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: #bdc3c7;
+}
+.empty-state i { font-size: 4rem; margin-bottom: 10px; }

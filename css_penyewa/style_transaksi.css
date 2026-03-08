@@ -1,0 +1,191 @@
+:root {
+    --primary: #FF9F43;
+    --primary-dark: #e67e22;
+    --brown-text: #3E2723;
+    --bg-light: #FFF9F2;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.checkout-container { background: var(--bg-light); padding-bottom: 80px; }
+
+/* Header Section */
+.checkout-header-section {
+    background: white; padding: 120px 0 40px; margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.checkout-header-section h1 { color: var(--brown-text); font-size: 28px; font-weight: 800; }
+.checkout-header-section p { color: #888; margin-top: 5px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Grid Layout */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr; 
+    gap: 30px; 
+    align-items: start; }
+
+/* Card Modern */
+.card-modern {
+    background: white; 
+    border-radius: 16px; 
+    padding: 30px; 
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-soft);
+}
+.card-header-icon { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+.card-header-icon i { color: var(--primary); font-size: 20px; }
+.card-header-icon h3 { font-size: 18px; color: var(--brown-text); }
+
+/* Input Styling */
+.input-group-modern { margin-bottom: 20px; }
+.input-group-modern label { display: block; font-weight: 700; color: #555; font-size: 14px; margin-bottom: 10px; }
+.input-group-modern input, .input-group-modern select {
+    width: 100%; padding: 14px; border: 1px solid #eee; border-radius: 12px;
+    background: #fcfcfc; transition: 0.3s;
+}
+.input-group-modern input:focus { border-color: var(--primary); background: white; outline: none; }
+
+/* Custom File Upload */
+.file-upload-box {
+    border: 2px dashed #eee; padding: 20px; text-align: center; border-radius: 12px;
+    background: #fafafa; cursor: pointer; transition: 0.3s;
+}
+.file-upload-box:hover { border-color: var(--primary); background: #fffdfa; }
+.file-upload-box input { display: none; }
+.file-upload-box i { font-size: 30px; color: #ccc; margin-bottom: 10px; display: block; }
+
+/* Summary Area */
+.card-summary-sticky {
+    background: white; border-radius: 16px; padding: 30px; position: sticky; top: 120px;
+    box-shadow: 0 15px 40px rgba(93, 64, 55, 0.08); border: 1px solid #FFF0E0;
+}
+.unit-detail { display: flex; gap: 20px; align-items: center; background: #fafafa; padding: 15px; border-radius: 12px; }
+.unit-detail img { width: 100px; }
+.tag-lepas-kunci { background: #FFF0E0; color: var(--primary); font-size: 11px; padding: 4px 10px; border-radius: 6px; font-weight: 800; }
+
+.billing-details { margin: 25px 0; }
+.bill-row { display: flex; justify-content: space-between; margin-bottom: 12px; color: #666; font-size: 14px; }
+.bill-row.total { border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; color: var(--brown-text); }
+.total-price { font-size: 22px; font-weight: 800; color: var(--primary); }
+
+.btn-primary-confirm {
+    width: 100%; background: var(--primary); color: white; border: none; padding: 16px;
+    border-radius: 12px; font-weight: 800; font-size: 16px; cursor: pointer; transition: 0.3s;
+}
+.btn-primary-confirm:hover { background: var(--brown-text); transform: translateY(-2px); }
+.secure-text { text-align: center; font-size: 11px; color: #aaa; margin-top: 15px; }
+
+@media (max-width: 900px) {
+    .checkout-grid { grid-template-columns: 1fr; }
+}
+
+/* Styling Halaman Sukses */
+.success-page-wrapper {
+    padding: 150px 0 100px;
+    background-color: #FFF9F2; /* Warna krem SIREMO */
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.success-card {
+    background: white;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(93, 64, 55, 0.1);
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #FF9F43;
+    margin-bottom: 20px;
+    animation: scaleUp 0.5s ease-out;
+}
+
+.success-card h1 { color: #3E2723; margin-bottom: 10px; }
+.thanks-msg { color: #777; margin-bottom: 35px; }
+
+/* Kotak Nota (Receipt) */
+.receipt-box {
+    background: #FAFAFA;
+    border: 1px dashed #E0E0E0;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 35px;
+    text-align: left;
+}
+
+.receipt-header { text-align: center; margin-bottom: 20px; }
+.receipt-header span { font-size: 12px; font-weight: 800; color: #BBB; letter-spacing: 2px; }
+.receipt-line { border-bottom: 1px solid #EEE; margin-top: 10px; }
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.status-pending { color: #FF9F43; }
+
+.receipt-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dotted #DDD;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+}
+.info-pembayaran {
+    background: #FFF9F2; /* Warna krem senada */
+    border: 1px solid #FF9F43; /* Border oranye */
+    padding: 15px;
+    border-radius: 12px;
+    animation: fadeIn 0.4s ease;
+}
+
+.info-pembayaran p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #3E2723;
+}
+
+.bank-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tombol */
+.success-actions { display: flex; 
+    gap: 15px; 
+    justify-content: center; }
+.btn-primary-custom { 
+    background: #FF9F43; 
+    color: white; 
+    padding: 12px 25px; 
+    border-radius: 12px; 
+    text-decoration: none; 
+    font-weight: 700; }
+.btn-secondary-custom { 
+    background: #5D4037; 
+    color: white; 
+    padding: 12px 25px; 
+    border-radius: 12px; 
+    text-decoration: none; 
+    font-weight: 700; }
+
+@keyframes scaleUp {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}

@@ -3,11 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Koneksi Database
 $host = "localhost"; 
 $user = "root";     
 $pass = "";         
 $db_name = "siremo_app"; 
-
 
 $koneksi = mysqli_connect($host, $user, $pass, $db_name);
 
@@ -16,24 +16,25 @@ if (mysqli_connect_errno()) {
 }
 
 /**
- * Fungsi untuk membersihkan input data dari potensi serangan SQL Injection dan XSS dasar.
- * @param string $data Data input dari user.
- * @return string Data yang sudah diamankan.
+ * Fungsi Cek Akses Universal
  */
-function anti_injection($data){
-    global $koneksi;
-    $filter = mysqli_real_escape_string($koneksi, $data);
-    $filter = stripslashes(strip_tags(htmlspecialchars($filter, ENT_QUOTES)));
-    return $filter;
-}
-
-function admin_guard() {
-    $login_page = '../login.php'; 
+function cek_akses($role_wajib) {
+    // 1. Cek apakah session status sudah 'login'
+    if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
+        echo "<script>alert('Anda harus login!'); window.location='../login.php';</script>"; // Tambahkan ../
+        exit;
+    }
     
-    if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login_admin' || $_SESSION['role'] != 'admin') {
-        session_unset();
-        session_destroy();
-        header("location: " . $login_page);
+    // 2. Cek apakah role sesuai (admin/penyewa)
+    if (!isset($_SESSION['role']) || $_SESSION['role'] != $role_wajib) {
+        echo "<script>alert('Akses Ditolak!'); window.location='../login.php?pesan=hak_akses_ditolak';</script>"; // Tambahkan ../
         exit;
     }
 }
+
+function anti_injection($data){
+    global $koneksi;
+    $filter = mysqli_real_escape_string($koneksi, $data);
+    return stripslashes(strip_tags(htmlspecialchars($filter, ENT_QUOTES)));
+}
+?>

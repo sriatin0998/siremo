@@ -35,7 +35,7 @@ if (!$result) {
 // ==========================================================
 // Catatan: Nilai ini dibuat STATIS agar SAMA PERSIS dengan gambar.
 // Jika ingin mengambil nilai DINAMIS dari database, Anda perlu query COUNT dan SUM terpisah.
-$total_penyewaan = mysqli_num_rows($result); // Mengambil jumlah baris yang benar
+$total_penyewaan = mysqli_num_rows($result); 
 $total_pendapatan_db = 0;
 
 // Hitung total pendapatan dari hasil query

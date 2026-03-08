@@ -1,0 +1,248 @@
+/* =========================================
+   CONTAINER UTAMA & HEADER
+   ========================================= */
+.car-menu-container {
+    padding: 120px 8% 80px;
+    background-color: #FFF9F2;
+    min-height: 100vh;
+}
+
+.menu-header { 
+    text-align: center; 
+    margin-bottom: 50px; 
+}
+
+.menu-header .subtitle { 
+    color: #FF9F43; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 13px; 
+    letter-spacing: 2px; 
+}
+
+.menu-header .title { 
+    color: #3E2723; 
+    font-size: 32px; 
+    margin: 10px 0; 
+}
+
+.title-line { 
+    width: 50px; 
+    height: 4px; 
+    background: #FF9F43; 
+    margin: 0 auto; 
+    border-radius: 5px; 
+}
+
+/* =========================================
+   SEARCH SECTION
+   ========================================= */
+.search-section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-box {
+    display: flex;
+    background: white;
+    padding: 5px;
+    border-radius: 50px;
+    border: 2px solid #5D4037;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-box button {
+    background: #FF9F43;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: #e68a2e;
+}
+
+/* =========================================
+   FILTER BUTTONS
+   ========================================= */
+.filter-container { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-bottom: 40px; 
+    flex-wrap: wrap; 
+}
+
+.filter-btn {
+    border: 2px solid #5D4037;
+    background: white;
+    color: #5D4037;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active { 
+    background: #FF9F43; 
+    color: white; 
+    border-color: #FF9F43; 
+    box-shadow: 0 5px 15px rgba(255,159,67,0.3); 
+}
+
+/* =========================================
+   CAR GRID & CARD STYLING
+   ========================================= */
+.car-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+.car-card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    transition: 0.4s;
+    border: 1px solid transparent;
+    display: none; /* Disembunyikan secara default untuk JS filter */
+}
+
+/* Class ini akan ditambahkan oleh JavaScript */
+.car-card.show { 
+    display: flex; 
+    flex-direction: column;
+    animation: fadeIn 0.5s ease forwards; 
+}
+
+.car-card:hover { 
+    transform: translateY(-10px); 
+    border-color: #FF9F43; 
+    box-shadow: 0 15px 35px rgba(93,64,55,0.1); 
+}
+
+/* Badge & Image */
+.badge { 
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    background: #FFF3E0; 
+    color: #FF9F43; 
+    padding: 5px 12px; 
+    border-radius: 10px; 
+    font-size: 11px; 
+    font-weight: 700; 
+    z-index: 10;
+}
+
+.car-image { 
+    height: 180px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+/* Car Info */
+.car-info h3 { 
+    color: #3E2723; 
+    font-size: 19px; 
+    margin-bottom: 5px; 
+}
+
+.price { 
+    color: #FF9F43; 
+    font-size: 22px; 
+    font-weight: 800; 
+    margin-bottom: 15px; 
+}
+
+.price span { 
+    color: #999; 
+    font-size: 13px; 
+    font-weight: 400; 
+}
+
+.card-features { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+    color: #777; 
+    font-size: 13px; 
+}
+
+/* =========================================
+   BUTTON GROUP (Detail & Sewa)
+   ========================================= */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: auto; /* Memaksa tombol ke bawah kartu jika konten di atas sedikit */
+}
+
+.btn-detail, .btn-sewa {
+    flex: 1;
+    padding: 12px 5px;
+    border-radius: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.btn-detail {
+    background: #F5F5F5;
+    color: #5D4037;
+    border: 1px solid #ddd;
+}
+
+.btn-detail:hover {
+    background: #EEEEEE;
+}
+
+.btn-sewa {
+    background: #d35400; 
+    color: white;
+}
+
+.btn-sewa:hover {
+    background: #a04000;
+    box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3);
+}
+
+/* =========================================
+   ANIMASI
+   ========================================= */
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}

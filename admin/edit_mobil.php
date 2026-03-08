@@ -1,163 +1,153 @@
 <?php
-session_start();
-include '../config.php'; 
+include '../config.php';
+cek_akses('admin');
 
-if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login_admin' || $_SESSION['role'] != 'admin') {
-    header("location: login.php");
+$id = $_GET['id'];
+// Ambil data mobil lama
+$query = mysqli_query($koneksi, "SELECT * FROM mobil WHERE id_mobil = '$id'");
+$data = mysqli_fetch_assoc($query);
+
+// Jika ID tidak ditemukan
+if (!$data) {
+    header("location: data_mobil.php");
     exit;
 }
 
-if (!function_exists('anti_injection')) {
-    function anti_injection($data) {
-        global $koneksi; 
-        $filter = stripslashes(strip_tags(htmlspecialchars($data, ENT_QUOTES)));
-        if (isset($koneksi) && is_object($koneksi) && method_exists($koneksi, 'real_escape_string')) {
-            $filter = $koneksi->real_escape_string($filter);
+if (isset($_POST['update_mobil'])) {
+    $merk      = anti_injection($_POST['merk']);
+    $model     = anti_injection($_POST['model']);
+    $tahun     = anti_injection($_POST['tahun']);
+    $plat      = anti_injection($_POST['plat_nomor']);
+    $tarif     = anti_injection($_POST['tarif_harian']);
+    $status    = anti_injection($_POST['status']);
+    $kategori  = anti_injection($_POST['kategori']);
+    $warna     = anti_injection($_POST['warna']);      // Tambahan Warna
+    $deskripsi = anti_injection($_POST['deskripsi']);  // Tambahan Deskripsi
+
+    // Cek apakah ada upload foto baru
+    if ($_FILES['foto']['name'] != "") {
+        $foto_name = $_FILES['foto']['name'];
+        $foto_tmp = $_FILES['foto']['tmp_name'];
+        $ekstensiFile = strtolower(pathinfo($foto_name, PATHINFO_EXTENSION));
+        $namaFileBaru = time() . '_' . str_replace(' ', '', $plat) . '.' . $ekstensiFile;
+        $targetPath = "../uploads/" . $namaFileBaru;
+
+        // Hapus foto lama jika ada
+        if (!empty($data['foto']) && file_exists("../uploads/" . $data['foto'])) {
+            unlink("../uploads/" . $data['foto']);
         }
-        return $filter;
-    }
-}
 
-$id_mobil = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$mobil_data = null;
-$error_message = '';
-
-if ($id_mobil > 0 && isset($koneksi)) {
-    $query_select_one = "SELECT * FROM mobil WHERE id_mobil = $id_mobil";
-    $result = mysqli_query($koneksi, $query_select_one);
-    
-    if ($result && mysqli_num_rows($result) > 0) {
-        $mobil_data = mysqli_fetch_assoc($result);
+        move_uploaded_file($foto_tmp, $targetPath);
+        
+        // Query UPDATE dengan FOTO baru
+        $query_update = "UPDATE mobil SET 
+            merek='$merk', 
+            model='$model', 
+            tahun='$tahun', 
+            plat_nomor='$plat', 
+            tarif_sewa_per_hari='$tarif', 
+            status_ketersediaan='$status', 
+            kategori='$kategori', 
+            warna='$warna', 
+            deskripsi='$deskripsi', 
+            foto='$namaFileBaru' 
+            WHERE id_mobil='$id'";
     } else {
-        $error_message = "Data mobil dengan ID $id_mobil tidak ditemukan.";
+        // Query UPDATE TANPA ganti foto
+        $query_update = "UPDATE mobil SET 
+            merek='$merk', 
+            model='$model', 
+            tahun='$tahun', 
+            plat_nomor='$plat', 
+            tarif_sewa_per_hari='$tarif', 
+            status_ketersediaan='$status', 
+            kategori='$kategori', 
+            warna='$warna', 
+            deskripsi='$deskripsi' 
+            WHERE id_mobil='$id'";
     }
-} else if ($id_mobil == 0) {
-    $error_message = "ID Mobil tidak valid.";
-} else {
-    $error_message = "Koneksi database gagal. Harap cek config.php.";
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_mobil']) && isset($koneksi)) {
-    $id_to_update = anti_injection($_POST['id_mobil']);
-    $merk = anti_injection($_POST['merk']); 
-    $model = anti_injection($_POST['model']);
-    $tahun = anti_injection($_POST['tahun']);
-    $plat = anti_injection($_POST['plat_nomor']);
-    $tarif_raw = anti_injection($_POST['tarif_harian']); 
-    $status_ketersediaan = anti_injection($_POST['status_ketersediaan']); 
-    $query_update = "UPDATE mobil SET 
-                    merek='$merk', 
-                    model='$model', 
-                    tahun='$tahun', 
-                    plat_nomor='$plat', 
-                    tarif_sewa_per_hari='$tarif_raw', 
-                    status_ketersediaan='$status_ketersediaan' 
-                    WHERE id_mobil='$id_to_update'";
 
     if (mysqli_query($koneksi, $query_update)) {
         header("location: data_mobil.php?status_edit=sukses");
         exit;
     } else {
-        $error_message = "Gagal memperbarui data: " . mysqli_error($koneksi);
+        echo "Error: " . mysqli_error($koneksi);
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit Mobil</title>
-<link rel="stylesheet" href="../assets/style4.css"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .edit-container { 
-            max-width: 600px; 
-            margin: 50px auto; 
-            padding: 30px; 
-            background-color: white; 
-            border-radius: 8px; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-        }
-        .edit-container h2 { margin-bottom: 20px; color: #333; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input[type="text"], .form-group input[type="number"], .form-group select { 
-            width: 100%; 
-            padding: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 4px; 
-            box-sizing: border-box; 
-        }
-        .form-actions { margin-top: 20px; display: flex; justify-content: space-between; }
-        .btn-submit { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
-        .btn-back { background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
-        .alert-error { padding: 10px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: .25rem; }
-    </style>
-</head>
-<body>
-    <div class="edit-container">
-        <h2><i class="fas fa-edit"></i> Edit Data Mobil: <?php echo htmlspecialchars($mobil_data['merek'] ?? 'Mobil') . ' ' . htmlspecialchars($mobil_data['model'] ?? ''); ?></h2>
-        
-        <?php if (!empty($error_message)): ?>
-            <div class="alert-error"><?php echo $error_message; ?></div>
-        <?php endif; ?>
+<?php include 'partials/header.php'; ?>
+<div class="dashboard-container">
+    <?php include 'partials/sidebar.php'; ?>
+    <div class="main-content">
+        <div class="content-box">
+            <h2>Edit Data Mobil</h2>
+            <hr>
+            <form action="" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+                
+                <div class="form-group">
+                    <label>Merk & Model Mobil</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" name="merk" value="<?php echo htmlspecialchars($data['merek']); ?>" required style="flex: 1;">
+                        <input type="text" name="model" value="<?php echo htmlspecialchars($data['model']); ?>" required style="flex: 1;">
+                    </div>
+                </div>
 
-        <?php if ($mobil_data): ?>
-        <form action="" method="POST">
-            <input type="hidden" name="id_mobil" value="<?php echo htmlspecialchars($mobil_data['id_mobil']); ?>">
+                <div class="form-group">
+                    <label>Tahun, Plat Nomor, & Warna</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" name="tahun" value="<?php echo $data['tahun']; ?>" required style="width: 25%;">
+                        <input type="text" name="plat_nomor" value="<?php echo htmlspecialchars($data['plat_nomor']); ?>" required style="width: 40%;">
+                        <input type="text" name="warna" value="<?php echo htmlspecialchars($data['warna']); ?>" required style="width: 35%;">
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="merk">Merk Mobil</label>
-                <input type="text" id="merk" name="merk" value="<?php echo htmlspecialchars($mobil_data['merek']); ?>" required>
-            </div>
+                <div class="form-group">
+                    <label>Tarif Harian (Rp)</label>
+                    <input type="number" name="tarif_harian" value="<?php echo $data['tarif_sewa_per_hari']; ?>" required>
+                </div>
 
-            <div class="form-group">
-                <label for="model">Model Mobil</label>
-                <input type="text" id="model" name="model" value="<?php echo htmlspecialchars($mobil_data['model']); ?>" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tahun">Tahun Produksi</label>
-                <input type="number" id="tahun" name="tahun" value="<?php echo htmlspecialchars($mobil_data['tahun']); ?>" min="2000" max="<?php echo date('Y'); ?>" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="plat_nomor">Plat Nomor</label>
-                <input type="text" id="plat_nomor" name="plat_nomor" value="<?php echo htmlspecialchars($mobil_data['plat_nomor']); ?>" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tarif_harian">Tarif Harian (Contoh: 300000)</label>
-                <input type="number" id="tarif_harian" name="tarif_harian" value="<?php echo htmlspecialchars($mobil_data['tarif_sewa_per_hari']); ?>" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="status_ketersediaan">Status Ketersediaan</label>
-                <select id="status_ketersediaan" name="status_ketersediaan" required>
-                    <?php 
-                        $statuses = ['Tersedia', 'Disewa', 'Perawatan'];
-                        foreach ($statuses as $status):
-                            $selected = ($status == $mobil_data['status_ketersediaan']) ? 'selected' : '';
-                    ?>
-                        <option value="<?php echo $status; ?>" <?php echo $selected; ?>>
-                            <?php echo $status; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label>Kategori Mobil</label>
+                    <select name="kategori" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="keluarga" <?php if($data['kategori'] == 'keluarga') echo 'selected'; ?>>Mobil Keluarga</option>
+                        <option value="city" <?php if($data['kategori'] == 'city') echo 'selected'; ?>>City Car</option>
+                        <option value="bus" <?php if($data['kategori'] == 'bus') echo 'selected'; ?>>Bus & Minibus</option>
+                    </select>
+                </div>
 
-            <div class="form-actions">
-                <a href="data_mobil.php" class="btn-back">Batal & Kembali</a>
-                <button type="submit" name="edit_mobil" class="btn-submit">Simpan Perubahan</button>
-            </div>
-        </form>
-        <?php else: ?>
-            <div class="form-actions">
-                <a href="data_mobil.php" class="btn-back">Kembali ke Data Mobil</a>
-            </div>
-        <?php endif; ?>
+                <div class="form-group">
+                    <label>Status Ketersediaan</label>
+                    <select name="status" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="Tersedia" <?php if($data['status_ketersediaan'] == 'Tersedia') echo 'selected'; ?>>Tersedia</option>
+                        <option value="Disewa" <?php if($data['status_ketersediaan'] == 'Disewa') echo 'selected'; ?>>Disewa</option>
+                        <option value="Maintenance" <?php if($data['status_ketersediaan'] == 'Maintenance') echo 'selected'; ?>>Maintenance</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Deskripsi Mobil</label>
+                    <textarea name="deskripsi" rows="4" required style="width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px;"><?php echo htmlspecialchars($data['deskripsi']); ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto Mobil (Biarkan kosong jika tidak ingin diganti)</label><br>
+                    <?php if(!empty($data['foto'])): ?>
+                        <div style="margin-bottom: 10px;">
+                            <small>Foto saat ini:</small><br>
+                            <img src="../uploads/<?php echo $data['foto']; ?>" width="150" style="border-radius: 5px; border: 1px solid #ddd;">
+                        </div>
+                    <?php endif; ?>
+                    <input type="file" name="foto" accept="image/*">
+                </div>
+
+                <div class="form-actions" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <a href="data_mobil.php" class="btn-cancel" style="text-decoration: none; padding: 10px 20px; background: #666; color: #fff; border-radius: 5px; margin-right: 10px;">Batal</a>
+                    <button type="submit" name="update_mobil" class="btn-submit" style="padding: 10px 25px; background: #FF9F43; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 </body>
 </html>

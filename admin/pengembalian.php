@@ -1,142 +1,121 @@
 <?php
-session_start();
 include '../config.php'; 
+cek_akses('admin'); 
 
-if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login_admin' || $_SESSION['role'] != 'admin') {
-    header("location: login.php");
-    exit;
-}
-$status_msg = "";
+$nama_admin = $_SESSION['nama'];
 
-// Query untuk mengambil daftar mobil yang sedang disewa (ASUMSI status_ketersediaan='Disewa')
-$query_mobil = "SELECT id_mobil, merek, plat_nomor FROM mobil WHERE status_ketersediaan = 'Disewa' ORDER BY merek ASC";
-$result_mobil = mysqli_query($koneksi, $query_mobil);
-
-if (isset($_POST['submit_pengembalian'])) {
-    $kendaraan = mysqli_real_escape_string($koneksi, $_POST['kendaraan']);
-    $tgl_pengembalian = mysqli_real_escape_string($koneksi, $_POST['tgl_pengembalian']);
-    $keadaan_mobil = mysqli_real_escape_string($koneksi, $_POST['keadaan_mobil']);
-    
-    // ASUMSI:
-    // 1. Kita cari id_transaksi yang sedang aktif berdasarkan merk kendaraan yang dikembalikan.
-    // 2. Kita update tgl_aktual_kembali di tabel transaksi_sewa.
-    // 3. Kita update status_ketersediaan mobil menjadi 'Tersedia'.
-
-    // Cek ID Mobil
-    $q_id_mobil = mysqli_query($koneksi, "SELECT id_mobil FROM mobil WHERE merk = '$kendaraan'");
-    if (mysqli_num_rows($q_id_mobil) > 0) {
-        $data_mobil = mysqli_fetch_assoc($q_id_mobil);
-        $id_mobil = $data_mobil['id_mobil'];
-
-        // 1. Update tgl_aktual_kembali di transaksi_sewa
-        $update_transaksi = "UPDATE transaksi_sewa 
-                            SET tgl_aktual_kembali = '$tgl_pengembalian', 
-                            status_transaksi = 'Selesai' 
-                             WHERE id_mobil = '$id_mobil' AND tgl_aktual_kembali IS NULL"; // Hanya update yang belum selesai
-
-        // 2. Update status mobil
-        $update_mobil = "UPDATE mobil SET status_ketersediaan = 'Tersedia' WHERE id_mobil = '$id_mobil'";
-        
-        if (mysqli_query($koneksi, $update_transaksi) && mysqli_query($koneksi, $update_mobil)) {
-            $status_msg = "<div class='success-msg'>Pengembalian **" . htmlspecialchars($kendaraan) . "** berhasil dicatat!</div>";
-            // Hitung denda jika perlu, dan arahkan ke halaman input denda jika Keadaan Mobil tidak bagus
-        } else {
-            $status_msg = "<div class='error-msg'>Gagal mencatat pengembalian: " . mysqli_error($koneksi) . "</div>";
-        }
-    } else {
-        $status_msg = "<div class='error-msg'>Kendaraan tidak ditemukan dalam database.</div>";
-    }
-}
+// Query mengambil data yang SUDAH SELESAI
+$query_read = "SELECT ts.*, p.nama, m.merek, m.plat_nomor 
+               FROM transaksi_sewa ts
+               JOIN penyewa p ON ts.id_penyewa = p.id_penyewa 
+               JOIN mobil m ON ts.id_mobil = m.id_mobil 
+               WHERE ts.status_transaksi = 'Selesai'
+               ORDER BY ts.tgl_aktual_kembali DESC";
+$result = mysqli_query($koneksi, $query_read);
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengembalian - SIREMO</title>
-    
-    <link rel="stylesheet" href="../assets/style3.css"> 
-    <link rel="stylesheet" href="../assets/style9.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-</head>
-<body>
-    <div class="dashboard-container">
-        
-        <div class="sidebar">
-            <div class="logo-siermo">
-                <span class="car-icon">🚗</span> 
-                <h2 class="logo-text">SIREMO</h2>
-                <i class="fa-solid fa-car-side"></i>
-            </div>
-            
-            <ul class="sidebar-menu">
-                <li class="menu-item"><a href="dashboard.php">Dashboard</a></li> 
-                <li class="menu-item"><a href="data_mobil.php">Data Mobil</a></li>
-                <li class="menu-item"><a href="kelola_penyewa.php">Data Penyewa</a></li>
-                <li class="menu-item"><a href="transaksi.php">Transaksi</a></li>
-                <li class="menu-item"><a href="tarif_sewa.php">Tarif Sewa</a></li>
-                <li class="menu-item active-link"><a href="pengembalian.php">Pengembalian</a></li>
-                <li class="menu-item"><a href="laporan_penyewaan.php">Laporan Penyewaan</a></li>
-                <li class="menu-item"><a href="ulasan.php">Ulasan</a></li>
-                
-                <li class="menu-item-spacer"></li> 
-                <li class="menu-item logout-link"><a href="logout.php">Logout</a></li>
-            </ul>
+<?php include 'partials/header.php'; ?>
+
+<style>
+    .data-table th { background: #f8f9fa; padding: 15px; border-bottom: 2px solid #dee2e6; color: #333; }
+    .data-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: middle; }
+    .badge-selesai { background: #27ae60; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+    .text-denda { color: #e74c3c; font-weight: bold; }
+    /* Style tambahan untuk tombol kembali di atas */
+    .btn-back-top {
+        display: inline-block;
+        color: white; 
+        text-decoration: none; 
+        background: rgba(0,0,0,0.4); 
+        padding: 6px 12px; 
+        border-radius: 5px;
+        font-size: 13px;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+    .btn-back-top:hover { background: rgba(0,0,0,0.6); }
+</style>
+
+<div class="dashboard-container">
+    <?php include 'partials/sidebar.php'; ?>
+
+    <div class="main-content">
+        <div class="background-image"></div> 
+        <div class="overlay"></div> 
+
+        <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; position: relative; z-index: 3;">
+            <div></div>
+            <p class="greeting" style="color: white; margin: 0; font-weight: bold;">
+                <i class="fas fa-user-circle"></i> Hii <?php echo htmlspecialchars($nama_admin); ?>!!
+            </p>
         </div>
 
-        <div class="main-content">
-            <div class="background-image"></div> 
-            <div class="overlay"></div> 
-            
-            <div class="pengembalian-container">
+        <div class="data-container" style="padding: 20px; position: relative; z-index: 2;">
+            <header class="main-header">
+                <h1 class="title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 5px;">Riwayat Pengembalian Mobil</h1>
                 
-                <div class="pengembalian-header">
-                    <a href="dashboard.php" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
-                    <h1 class="pengembalian-title">Pengembalian</h1>
-                </div>
-                
-                <?php echo $status_msg; ?>
+                <a href="transaksi.php" class="btn-back-top">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Manajemen Transaksi
+                </a>
 
-                <div class="form-card-pengembalian">
-                    <form method="POST" action="pengembalian.php">
-                        
-                        <div class="form-group-pengembalian">
-                            <label for="kendaraan">Kendaraan</label>
-                            <select id="kendaraan" name="kendaraan" required>
-                                <option value="" disabled selected>Pilih Merk Kendaraan</option>
-                                <?php 
-                                if (mysqli_num_rows($result_mobil) > 0) {
-                                    while($row_mobil = mysqli_fetch_assoc($result_mobil)) {
-                                        echo '<option value="' . htmlspecialchars($row_mobil['merk']) . '">' . htmlspecialchars($row_mobil['merk']) . ' (' . htmlspecialchars($row_mobil['plat_nomor']) . ')</option>';
-                                    }
-                                } else {
-                                    echo '<option value="">-- Tidak ada mobil yang sedang disewa --</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group-pengembalian">
-                            <label for="tgl_pengembalian">Tanggal Pengembalian</label>
-                            <input type="date" id="tgl_pengembalian" name="tgl_pengembalian" required>
-                        </div>
-                        
-                        <div class="form-group-pengembalian">
-                            <label for="keadaan_mobil">Keadaan Mobil</label>
-                            <input type="text" id="keadaan_mobil" name="keadaan_mobil" placeholder="Misal: Bagus, Lecet, Mesin panas" required>
-                        </div>
-                        
-                        <div class="button-group-pengembalian">
-                            <button type="submit" name="submit_pengembalian" class="submit-btn-pengembalian">Submit</button>
-                            
-                            <button type="button" class="denda-btn-pengembalian" onclick="window.location.href='input_denda.php'">Input Denda</button>
-                        </div>
-                    </form>
-                </div>
+                <?php if (isset($_GET['pesan'])): ?>
+                    <div id="alert-notif" style="background: #d4edda; color: #155724; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #c3e6cb;">
+                        <i class="fas fa-check-circle"></i> <?php echo htmlspecialchars($_GET['pesan']); ?>
+                    </div>
+                <?php endif; ?>
+            </header>
+
+            <div class="content-box" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; overflow-x: auto;">
+                <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Penyewa</th>
+                            <th>Mobil</th>
+                            <th>Tgl Kembali</th>
+                            <th>Denda</th>
+                            <th>Alasan Denda</th>
+                            <th>Total Bayar</th>
+                            <th style="text-align: center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (mysqli_num_rows($result) > 0): ?>
+                            <?php $no = 1; while($row = mysqli_fetch_assoc($result)): ?>
+                            <tr>
+                                <td><?php echo $no++; ?></td>
+                                <td><b><?php echo htmlspecialchars($row['nama']); ?></b></td>
+                                <td><?php echo htmlspecialchars($row['merek']); ?> <br><small>(<?php echo htmlspecialchars($row['plat_nomor']); ?>)</small></td>
+                                <td><?php echo ($row['tgl_aktual_kembali']) ? date('d/m/Y', strtotime($row['tgl_aktual_kembali'])) : '-'; ?></td>
+                                <td class="text-denda">
+                                    Rp <?php echo number_format($row['denda'], 0, ',', '.'); ?>
+                                </td>
+                                <td><small><?php echo htmlspecialchars($row['ulasan_denda'] ?: '-'); ?></small></td>
+                                <td style="font-weight: bold;">Rp <?php echo number_format($row['total_bayar'], 0, ',', '.'); ?></td>
+                                <td style="text-align: center;">
+                                    <span class="badge-selesai">SELESAI</span>
+                                </td>
+                            </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr><td colspan="8" style="text-align: center; padding: 40px; color: #999;">Belum ada riwayat pengembalian.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
-            
         </div>
     </div>
+</div>
+
+<script>
+    const notif = document.getElementById("alert-notif");
+    if (notif) {
+        setTimeout(() => { 
+            notif.style.transition = "opacity 0.5s ease";
+            notif.style.opacity = "0"; 
+            setTimeout(() => notif.remove(), 500); 
+        }, 4000);
+    }
+</script>
 </body>
 </html>
