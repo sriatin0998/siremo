@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $host = "localhost"; 
 $user = "root";     
 $pass = "";         
-$db_name = "siremo_app"; 
+$db_name = "siremo_api"; 
 
 $koneksi = mysqli_connect($host, $user, $pass, $db_name);
 
