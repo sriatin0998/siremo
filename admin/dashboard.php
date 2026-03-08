@@ -40,11 +40,23 @@ if($q_kembali) {
     $pengembalian = 0; 
 }
 
+<<<<<<< HEAD
 // 6. Tarif Sewa (Pastikan kolom 'tarif_sewa_per_hari' ada di tabel 'mobil')
 $q_tarif = mysqli_query($koneksi, "SELECT MIN(tarif_sewa_per_hari) AS t_min, MAX(tarif_sewa_per_hari) AS t_max FROM mobil");
 $d_tarif = mysqli_fetch_assoc($q_tarif);
 $tarif_min = number_format($d_tarif['t_min'] ?? 0, 0, ',', '.');
 $tarif_max = number_format($d_tarif['t_max'] ?? 0, 0, ',', '.');
+=======
+$username = $_SESSION['username'];
+$nama_lengkap = isset($_SESSION['nama_lengkap']) ? $_SESSION['nama_lengkap'] : 'Admin'; 
+
+$total_mobil = 999;
+$total_penyewa = 4;
+$pendapatan = "Rp. 6.325.000";
+$transaksi = 4;
+$pengembalian = 0;
+$tarif_sewa = "Rp.275.000 - 1.300.000";
+>>>>>>> b8d9290bc2e45757458286a8f3a7331f3067501e
 ?>
 
 <?php include 'partials/header.php'; ?> 

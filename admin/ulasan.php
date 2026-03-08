@@ -28,6 +28,7 @@ $query = "SELECT u.*, m.merek, p.nama as nama_penyewa
 $result = mysqli_query($koneksi, $query);
 ?>
 
+<<<<<<< HEAD
 <?php include 'partials/header.php'; ?>
 <div class="dashboard-container">
     <?php include 'partials/sidebar.php'; ?>
@@ -41,6 +42,41 @@ $result = mysqli_query($koneksi, $query);
             <p class="greeting" style="color: white; margin: 0; font-weight: bold;">
                 <i class="fas fa-user-circle"></i> Hii <?php echo htmlspecialchars($nama_admin); ?>!!
             </p>
+=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulasan Pelanggan - Sistem Rental Mobil</title>
+    
+    <link rel="stylesheet" href="../assets/style3.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <div class="sidebar">
+            <div class="logo-siermo">
+                <i class="fa-solid fa-car-side"></i>
+                <h2 class="logo-text">SIREMO</h2> 
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="dashboard.php">Dashboard</a></li> 
+                <li class="menu-item"><a href="data_mobil.php">Data Mobil</a></li>
+                <li class="menu-item"><a href="kelola_penyewa.php">Data Penyewa</a></li>
+                <li class="menu-item"><a href="transaksi.php">Transaksi</a></li>
+                <li class="menu-item"><a href="tarif_sewa.php">Tarif Sewa</a></li>
+                <li class="menu-item"><a href="pengembalian.php">Pengembalian</a></li>
+                <li class="menu-item"><a href="laporan_penyewaan.php">Laporan Penyewaan</a></li>
+                <li class="menu-item active-link"><a href="ulasan.php">Ulasan</a></li> 
+                
+                <li class="menu-item-spacer"></li> 
+                <li class="menu-item logout-link"><a href="logout.php">Logout</a></li>
+            </ul>
+>>>>>>> b8d9290bc2e45757458286a8f3a7331f3067501e
         </div>
 
         <div class="data-container" style="padding: 30px; position: relative; z-index: 2;">
